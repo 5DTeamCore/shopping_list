@@ -16,5 +16,5 @@ app.use(express.static(path.join(__dirname, '../dist')))
 app.use('/user', user)
 
 app.listen(PORT, () => {
-  console.log("Listening to port: ", PORT)
+  console.log("Listening to port: ", process.env.PORT || PORT)
 })
