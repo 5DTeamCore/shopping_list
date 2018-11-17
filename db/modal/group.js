@@ -1,17 +1,12 @@
 const db = require('../db')
 const sqlQuery = require('./query')
 const status = require('../../db/modal/constants/groupStatus')
+const queryUtils = require('./utils/queryUtils');
 
 const group = {
   get: {
     getList: (param, cb) => {
-      db.query(sqlQuery.group.getByUser(param.user_id), (err, result, fields) => {
-        if (err) {
-          cb(err, null)
-        } else {
-          cb(null, result)
-        }
-      })
+      queryUtils.query(sqlQuery.group.getByUser(param.user_id), cb)
     }
   },
   post: {
@@ -31,22 +26,10 @@ const group = {
       })
     },
     addUser: (param, cb) => {
-      db.query(sqlQuery.group.addUser(param.user_id, param.group_id), (err, result, fields) => {
-        if (err) {
-          cb(err, false)
-        } else {
-          cb(null, true)
-        }
-      })
+      queryUtils.query(sqlQuery.group.addUser(param.user_id, param.group_id), cb)
     },
     actionGroup: (param, cb) => {
-      db.query(sqlQuery.group.actionGroup(status[param.action], param.user_group_id), (err, result, fields) => {
-        if (err) {
-          cb(err, false)
-        } else {
-          cb(null, true)
-        }
-      })
+      queryUtils.query(sqlQuery.group.actionGroup(status[param.action], param.user_group_id), cb)
     }
   }
 }

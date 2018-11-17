@@ -20,7 +20,7 @@ const checkParam = (req, res, next) => {
 }
 // define endpoints
 router.post('/login', checkParam, (req, res) => {
-  user.login(req.body, (err, success) => {
+  user.post.login(req.body, (err, success) => {
     res.send({
       success
     })
@@ -28,7 +28,7 @@ router.post('/login', checkParam, (req, res) => {
 })
 
 router.post('/register', checkParam, (req, res) => {
-  user.register(req.body, (err, success) => {
+  user.post.register(req.body, (err, success) => {
     if (err) {
       res.send({
         success,

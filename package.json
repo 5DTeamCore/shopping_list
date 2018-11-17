@@ -2,7 +2,7 @@
   "name": "shopping-list",
   "scripts": {
     "start": "node server/server.js",
-    "start-dev": "nodemon server/server.js"
+    "start-dev": "NODE_ENV=dev nodemon server/server.js"
   },
   "dependencies": {
     "body-parser": "^1.14.0",
