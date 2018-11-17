@@ -1,0 +1,14 @@
+{
+  "name": "shopping-list",
+  "scripts": {
+    "start": "nodemon server/server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.0",
+    "cookie-parser": "~1.0.1",
+    "express": "^4.13.3",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.6",
+    "path": "^0.12.7"
+  }
+}
