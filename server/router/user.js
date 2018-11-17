@@ -35,7 +35,7 @@ router.post('/register', checkParam, (req, res) => {
         error: err.code,
       })
     } else {
-    res.send({
+      res.send({
         success,
       })
     }
