@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var user = require('../../db/modal/user');
+var user = require('../../db/modal/user')
 
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
@@ -10,7 +10,7 @@ router.use(function timeLog (req, res, next) {
 
 const checkParam = (req, res, next) => {
   if (req.body.username !== undefined && req.body.password !== undefined) {
-    next();
+    next()
   } else {
     res.send({
       success: false,
@@ -24,7 +24,7 @@ router.post('/login', checkParam, (req, res) => {
     res.send({
       success
     })
-  });
+  })
 })
 
 router.post('/register', checkParam, (req, res) => {
@@ -37,9 +37,9 @@ router.post('/register', checkParam, (req, res) => {
     } else {
     res.send({
         success,
-      });
+      })
     }
-  });
+  })
 })
 
 module.exports = router
