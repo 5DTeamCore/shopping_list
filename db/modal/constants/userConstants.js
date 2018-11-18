@@ -1,4 +1,4 @@
-const status = {
+const action = {
     APPROVE: {
       action: 'Approve',
       active: true,
@@ -11,14 +11,8 @@ const status = {
       action: 'Reject',
       active: false,
     },
-    INACTIVE: {
-      action: 'Inactive',
-      active: false,
-    },
-    CLOSED: {
-      action: 'Closed',
-      active: false,
-    },
 }
 
-module.exports = status
+module.exports = {
+  action
+}

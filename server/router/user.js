@@ -1,6 +1,7 @@
-var express = require('express')
-var router = express.Router()
-var user = require('../../db/modal/user')
+const express = require('express')
+const router = express.Router()
+const user = require('../../db/modal/user')
+const userConstants = require('../../db/modal/constants/userConstants')
 
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
@@ -18,7 +19,7 @@ const checkParam = (req, res, next) => {
     })
   }
 }
-// define endpoints
+// POST
 router.post('/login', checkParam, (req, res) => {
   user.post.login(req.body, (err, success) => {
     res.send({
@@ -39,6 +40,35 @@ router.post('/register', checkParam, (req, res) => {
         success,
       })
     }
+  })
+})
+
+router.post('/addFriend', (req, res) => {
+  user.post.addFriend(req.body, (err, success) => {
+    res.send({
+      success,
+      error: err
+    })
+  })
+})
+
+const checkActionParam = (req, res, next) => {
+  if (userConstants.action[req.body.action] !== undefined) {
+    next()
+  } else {
+    res.send({
+      success: false,
+      error: 'Invalid Params'
+    })
+  }
+}
+
+router.post('/actionFriendRequest', checkActionParam, (req, res) => {
+  user.post.actionFriendRequest(req.body, (err, success) => {
+    res.send({
+      success,
+      error: err
+    })
   })
 })
 

@@ -1,8 +1,9 @@
 const db = require('../../db')
 
-const query = (query, cb) => {
+const queryPost = (query, cb) => {
   db.query(query, (err, result, fields) => {
     if (err) {
+      console.log(err);
       cb(err, false)
     } else {
       cb(null, true)
@@ -10,6 +11,18 @@ const query = (query, cb) => {
   })
 }
 
+const queryGet = (query, cb) => {
+  db.query(query, (err, result, fields) => {
+    if (err) {
+      console.log(err);
+      cb(err, null)
+    } else {
+      cb(null, result)
+    }
+  })
+}
+
 module.exports = {
-  query,
+  queryPost,
+  queryGet
 }

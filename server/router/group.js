@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const group = require('../../db/modal/group')
-const status = require('../../db/modal/constants/groupStatus')
+const groupConstants = require('../../db/modal/constants/groupConstants')
 
 // GET
 router.get('/get', (req, res) => {
@@ -43,7 +43,7 @@ router.post('/adduser', (req, res) => {
 })
 
 const checkActionParam = (req, res, next) => {
-  if (status[req.body.action] !== undefined) {
+  if (groupConstants[req.body.action] !== undefined) {
     next()
   } else {
     res.send({
