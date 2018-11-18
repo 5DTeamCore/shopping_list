@@ -3,7 +3,7 @@
 ## API
 
 ### User
-GET
+####GET
 _To get friend list_
 ```
 Endpoint:
@@ -14,7 +14,7 @@ _To get friend request list_
 Endpoint:
   - /user/friendRequests?user_id=1
 ```
-POST
+####POST
 _To Login a User_
 ```
 Endpoint:
@@ -77,12 +77,12 @@ Response:
   }
 ```
 ### Group
-GET
+####GET
 _To get all the groups this user has_
 ```
 - /user/login?user_id=123
 ```
-POST
+####POST
 _To create a group_
 ```
 Endpoint:
