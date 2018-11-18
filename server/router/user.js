@@ -16,6 +16,12 @@ router.get('/friend', (req, res) => {
   })
 })
 
+router.get('/friendRequests', (req, res) => {
+  user.get.getFriendRequests(req.query, (err, result) => {
+    res.json(result)
+  })
+})
+
 // POST
 const checkParam = (req, res, next) => {
   if (req.body.username !== undefined && req.body.password !== undefined) {

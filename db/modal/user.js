@@ -7,6 +7,9 @@ const user = {
   get: {
     getFriends: (param, cb) => {
       queryUtils.queryGet(sqlQuery.getFriend(param.user_id), cb)
+    },
+    getFriendRequests: (param, cb) => {
+      queryUtils.queryGet(sqlQuery.getFriendRequests(param.user_id), cb)
     }
   },
   post: {

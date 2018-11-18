@@ -8,6 +8,14 @@ const query = {
       AND active = true`
     )
   },
+  getFriendRequests: (user_id) => {
+    return (
+      `SELECT * FROM friend
+      WHERE friend_id = ${user_id}
+      AND status = '${userConstants.action.PENDING_APPROVAL.action}'
+      AND active = true`
+    )
+  },
   addFriend: (user_id, friend_id) => {
     return (
       `INSERT INTO friend (user_id, friend_id, status)
