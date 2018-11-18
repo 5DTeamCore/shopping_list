@@ -9,6 +9,14 @@ router.use(function timeLog (req, res, next) {
   next()
 })
 
+// GET
+router.get('/friend', (req, res) => {
+  user.get.getFriends(req.query, (err, result) => {
+    res.json(result)
+  })
+})
+
+// POST
 const checkParam = (req, res, next) => {
   if (req.body.username !== undefined && req.body.password !== undefined) {
     next()
@@ -19,7 +27,7 @@ const checkParam = (req, res, next) => {
     })
   }
 }
-// POST
+
 router.post('/login', checkParam, (req, res) => {
   user.post.login(req.body, (err, success) => {
     res.send({

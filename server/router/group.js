@@ -6,7 +6,6 @@ const groupConstants = require('../../db/modal/constants/groupConstants')
 // GET
 router.get('/get', (req, res) => {
   group.get.getList(req.query, (err, result) => {
-    console.log(result);
     res.json(result)
   })
 })
