@@ -2,8 +2,8 @@ const groupConstants = require('../constants/groupConstants')
 
 const query = {
   GET_GROUP_BY_USER: (
-    `SELECT * FROM shopping_group sg
-    LEFT JOIN user_group_join ugj on sg.id = ugj.shopping_group_id
+    `SELECT * FROM user_group_join ugj
+    LEFT JOIN shopping_group sg on ugj.shopping_group_id = sg.id
     WHERE ugj.user_id = ?
     ORDER BY sg.updated_time`
   ),

@@ -10,8 +10,8 @@ const queryPost = (query, param, cb) => {
   })
 }
 
-const queryGet = (query, cb) => {
-  db.query(query, (err, result, fields) => {
+const queryGet = (query, param, cb) => {
+  db.query(query, param, (err, result, fields) => {
     if (err) {
       cb(err, null)
     } else {
