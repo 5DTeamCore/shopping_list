@@ -1,9 +1,8 @@
 const db = require('../../db')
 
-const queryPost = (query, cb) => {
-  db.query(query, (err, result, fields) => {
+const queryPost = (query, param, cb) => {
+  db.query(query, param, (err, result, fields) => {
     if (err) {
-      console.log(err);
       cb(err, false)
     } else {
       cb(null, true)
@@ -14,7 +13,6 @@ const queryPost = (query, cb) => {
 const queryGet = (query, cb) => {
   db.query(query, (err, result, fields) => {
     if (err) {
-      console.log(err);
       cb(err, null)
     } else {
       cb(null, result)

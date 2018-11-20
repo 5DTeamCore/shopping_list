@@ -1,29 +1,47 @@
+const bcrypt = require('bcryptjs');
 const db = require('../db')
+const queryUtils = require('./utils/queryUtils');
 const sqlQuery = require('./query/user')
 const userConstants = require('../../db/modal/constants/userConstants')
-const queryUtils = require('./utils/queryUtils');
 
 const user = {
   get: {
     getFriends: (param, cb) => {
-      queryUtils.queryGet(sqlQuery.getFriend(param.user_id), cb)
+      queryUtils.queryGet(sqlQuery.GET_FRIENDS, [param.user_id], cb)
     },
     getFriendRequests: (param, cb) => {
-      queryUtils.queryGet(sqlQuery.getFriendRequests(param.user_id), cb)
+      queryUtils.queryGet(
+        sqlQuery.GET_FRIEND_REQUESTS,
+        [param.user_id, userConstants.action.PENDING_APPROVAL.action],
+        cb
+      )
     }
   },
   post: {
     addFriend: (param, cb) => {
-      queryUtils.queryPost(sqlQuery.addFriend(param.user_id, param.friend_id), cb)
+      queryUtils.queryPost(
+        sqlQuery.ADD_FRIEND,
+        [param.user_id, param.friend_id, userConstants.action.PENDING_APPROVAL.action],
+        cb
+      )
     },
     actionFriendRequest: (param, cb) => {
-      queryUtils.queryPost(sqlQuery.actionFriendRequest(param.friend_request_id, userConstants.action[param.action]), cb)
+      queryUtils.queryPost(
+        sqlQuery.ACTION_FRIEND_REQUEST,
+        [
+          userConstants.action[param.action].action,
+          userConstants.action[param.action].active,
+          param.friend_request_id
+        ],
+        cb
+      )
     },
     login: (param, cb) => {
-      db.query(sqlQuery.getPassword(param.username), (err, result, fields) => {
+      db.query(sqlQuery.GET_PASSWORD, [param.username], (err, result, fields) => {
+        const passwordIsValid = bcrypt.compareSync(param.password, result[0].password);
         if (err) {
           cb(err, false)
-        } else if (result.length === 0 || result[0].password !== param.password) {
+        } else if (result.length === 0 || !passwordIsValid) {
           cb(err, false)
         } else {
           cb(null, true)
@@ -31,7 +49,8 @@ const user = {
       })
     },
     register: (param, cb) => {
-      queryUtils.queryPost(sqlQuery.insert(param.username, param.password), cb)
+      const password = bcrypt.hashSync(param.password, 8);
+      queryUtils.queryPost(sqlQuery.INSERT_USER, [param.username, password], cb)
     }
   }
 }
