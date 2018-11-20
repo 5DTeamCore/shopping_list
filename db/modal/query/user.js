@@ -18,10 +18,10 @@ const query = {
     VALUES (?,?,?)`
   ),
   ACTION_FRIEND_REQUEST: (
-      `UPDATE friend
-      SET status = ?,
-      active = ?
-      WHERE id = ?`
+    `UPDATE friend
+    SET status = ?,
+    active = ?
+    WHERE id = ?`
   ),
   INSERT_USER: 'INSERT INTO user (username, password) VALUES (?,?)',
   GET_PASSWORD: 'SELECT id, password FROM user where username = ?',

@@ -14,8 +14,8 @@ app.use(express.static(path.join(__dirname, '../dist')))
 
 
 //Router for Server
-app.use('/user', user)
-app.use('/group', group)
+app.use('/api/user', user)
+app.use('/api/group', group)
 
 app.listen(PORT, () => {
   console.log("Listening to port: ", PORT)

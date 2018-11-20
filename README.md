@@ -7,18 +7,18 @@ GET
 _To get friend list_
 ```
 Endpoint:
-  - /user/friend?user_id=1
+  - /api/user/friend?user_id=1
 ```
 _To get friend request list_
 ```
 Endpoint:
-  - /user/friendRequests?user_id=1
+  - /api/user/friendRequests?user_id=1
 ```
 POST  
 _To Login a User_
 ```
 Endpoint:
-  - /user/login
+  - /api/user/login
 Parameter:
   {
     username: "asdf",
@@ -32,7 +32,7 @@ Response:
 _To Register a User_
 ```
 Endpoint:
-  - /user/register
+  - /api/user/register
 Parameter:
   {
     username: "asdf",
@@ -47,7 +47,7 @@ Response:
 _To Add a Friend_
 ```
 Endpoint:
-  - /user/addFriend
+  - /api/user/addFriend
 Parameter:
   {
     user_id: 1,
@@ -62,7 +62,7 @@ Response:
 _To action a friend request_
 ```
 Endpoint:
-  - /user/actionFriendRequest
+  - /api/user/actionFriendRequest
 Parameter:
   {
     action: [
@@ -80,13 +80,13 @@ Response:
 GET  
 _To get all the groups this user has_
 ```
-- /user/login?user_id=123
+- /api/user/login?user_id=123
 ```
 POST  
 _To create a group_
 ```
 Endpoint:
-  - /group/create
+  - /api/group/create
 Parameter:
   {
     name: "asdf",
@@ -101,7 +101,7 @@ Response:
 _To add a user to the group_
 ```
 Endpoint:
-  - /group/addUser
+  - /api/group/addUser
 Parameter:
   {
     user_id: 1,
@@ -116,7 +116,7 @@ Response:
 _To action a request fro the group_
 ```
 Endpoint:
-  - /group/action
+  - /api/group/action
 Parameter:
   {
     action: [
