@@ -1,15 +1,20 @@
-const config = require('../../config')
+if (process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'test') {
+  const config = require('../../config')
+  const secret = config.secret
+} else {
+  const secret = process.env.SECRET
+}
 const jwt = require('jsonwebtoken')
 
 const createToken = (user_id, expiresIn) => {
-  const token = jwt.sign({ id: user_id }, config.secret, {
+  const token = jwt.sign({ id: user_id }, secret, {
     expiresIn: expiresIn
   })
   return token
 }
 
 const verifyToken = (token, cb) => {
-  jwt.verify(token, config.secret, (err, decoded) => {
+  jwt.verify(token, secret, (err, decoded) => {
     if (err) {
       return cb(false)
     } else {
