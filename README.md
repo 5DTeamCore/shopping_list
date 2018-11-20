@@ -1,7 +1,8 @@
 # Shopping List
 
 ## API
-
+All routes except login and register have authentication
+*provide the header x-access-token with the token key*
 ### User
 GET  
 _To get friend list_
@@ -27,6 +28,7 @@ Parameter:
 Response:
   {
     success: boolean
+    token: '1234123412341234'
   }
 ```
 _To Register a User_
@@ -41,7 +43,8 @@ Parameter:
 Response:
   Response:
   {
-    success: boolean
+    success: boolean,
+    token: 'asdfasdfasdfadsf'
   }
 ```
 _To Add a Friend_
