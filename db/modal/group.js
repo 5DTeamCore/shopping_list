@@ -1,6 +1,6 @@
 const db = require('../db')
 const sqlQuery = require('./query/group')
-const groupConstants = require('../../db/modal/constants/groupConstants')
+const groupConstants = require('./constants/groupConstants')
 const queryUtils = require('./utils/queryUtils');
 
 const group = {

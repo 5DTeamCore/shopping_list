@@ -1,12 +1,11 @@
 var mysql = require('mysql')
-if (process.env.NODE_ENV === 'dev') {
-  var config = require('../config')
-
+if (process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'test') {
+  var config = require('./config')
   var connection = mysql.createConnection({
     host     : config.host,
     user     : config.user,
     password : config.password,
-    database : config.database,
+    database : process.env.NODE_ENV === 'test' ? config.test_database : config.database,
   })
 } else {
   var connection = mysql.createConnection({

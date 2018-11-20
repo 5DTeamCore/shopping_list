@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const db = require('../db')
 const queryUtils = require('./utils/queryUtils');
 const sqlQuery = require('./query/user')
-const userConstants = require('../../db/modal/constants/userConstants')
+const userConstants = require('./constants/userConstants')
 
 const user = {
   get: {

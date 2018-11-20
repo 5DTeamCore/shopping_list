@@ -1,12 +1,15 @@
 {
   "name": "shopping-list",
   "scripts": {
-    "start": "node server/server.js",
-    "start-dev": "NODE_ENV=dev nodemon server/server.js"
+    "test": "mocha --recursive",
+    "start": "node server/app.js",
+    "start-dev": "NODE_ENV=dev nodemon server/app.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.14.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.13.3",
     "jsonwebtoken": "^8.4.0",

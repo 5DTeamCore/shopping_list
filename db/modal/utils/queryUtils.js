@@ -22,5 +22,5 @@ const queryGet = (query, cb) => {
 
 module.exports = {
   queryPost,
-  queryGet
+  queryGet,
 }

@@ -20,3 +20,5 @@ app.use('/group', group)
 app.listen(PORT, () => {
   console.log("Listening to port: ", PORT)
 })
+
+module.exports = app;
