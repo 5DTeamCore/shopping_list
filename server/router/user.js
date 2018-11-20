@@ -1,22 +1,17 @@
+const auth = require('./auth')
 const express = require('express')
 const router = express.Router()
 const user = require('../../db/modal/user')
 const userConstants = require('../../db/modal/constants/userConstants')
 
-// middleware that is specific to this router
-router.use(function timeLog (req, res, next) {
-  console.log('Time: ', Date.now())
-  next()
-})
-
 // GET
-router.get('/friend', (req, res) => {
+router.get('/friend', auth.authMiddleware, (req, res) => {
   user.get.getFriends(req.query, (err, result) => {
     res.json(result)
   })
 })
 
-router.get('/friendRequests', (req, res) => {
+router.get('/friendRequests', auth.authMiddleware, (req, res) => {
   user.get.getFriendRequests(req.query, (err, result) => {
     res.json(result)
   })
@@ -35,30 +30,41 @@ const checkParam = (req, res, next) => {
 }
 
 router.post('/login', checkParam, (req, res) => {
-  user.post.login(req.body, (err, success) => {
-    res.send({
-      success
-    })
-  })
-})
-
-router.post('/register', checkParam, (req, res) => {
-  user.post.register(req.body, (err, success) => {
+  user.post.login(req.body, (err, success, result) => {
     if (err) {
       res.send({
         success,
         error: err.code,
       })
     } else {
+      const token = auth.createToken(result[0].id, 86400);
       res.send({
         success,
+        token
       })
     }
   })
 })
 
-router.post('/addFriend', (req, res) => {
-  user.post.addFriend(req.body, (err, success) => {
+router.post('/register', checkParam, (req, res) => {
+  user.post.register(req.body, (err, success, result) => {
+    if (err) {
+      res.send({
+        success,
+        error: err.code,
+      })
+    } else {
+      const token = auth.createToken(result.insertId, 86400);
+      res.send({
+        success,
+        token,
+      })
+    }
+  })
+})
+
+router.post('/addFriend', auth.authMiddleware, (req, res) => {
+  user.post.addFriend(req.body, (err, success, result) => {
     res.send({
       success,
       error: err
@@ -77,8 +83,8 @@ const checkActionParam = (req, res, next) => {
   }
 }
 
-router.post('/actionFriendRequest', checkActionParam, (req, res) => {
-  user.post.actionFriendRequest(req.body, (err, success) => {
+router.post('/actionFriendRequest', [auth.authMiddleware, checkActionParam], (req, res) => {
+  user.post.actionFriendRequest(req.body, (err, success, result) => {
     res.send({
       success,
       error: err

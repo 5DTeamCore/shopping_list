@@ -40,11 +40,11 @@ const user = {
       db.query(sqlQuery.GET_PASSWORD, [param.username], (err, result, fields) => {
         const passwordIsValid = bcrypt.compareSync(param.password, result[0].password);
         if (err) {
-          cb(err, false)
+          cb(err, false, null)
         } else if (result.length === 0 || !passwordIsValid) {
-          cb(err, false)
+          cb(err, false, null)
         } else {
-          cb(null, true)
+          cb(null, true, result)
         }
       })
     },

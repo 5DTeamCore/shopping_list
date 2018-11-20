@@ -24,7 +24,7 @@ const query = {
       WHERE id = ?`
   ),
   INSERT_USER: 'INSERT INTO user (username, password) VALUES (?,?)',
-  GET_PASSWORD: 'SELECT password FROM user where username = ?',
+  GET_PASSWORD: 'SELECT id, password FROM user where username = ?',
 }
 
 module.exports = query

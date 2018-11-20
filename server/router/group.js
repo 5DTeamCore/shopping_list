@@ -1,7 +1,11 @@
+const auth = require('./auth')
 const express = require('express')
 const router = express.Router()
 const group = require('../../db/modal/group')
 const groupConstants = require('../../db/modal/constants/groupConstants')
+
+// Middleware
+router.use(auth.authMiddleware);
 
 // GET
 router.get('/get', (req, res) => {
@@ -12,7 +16,7 @@ router.get('/get', (req, res) => {
 
 // POST
 router.post('/create', (req, res) => {
-  group.post.create(req.body, (err, success) => {
+  group.post.create(req.body, (err, success, result) => {
     if (err) {
       res.send({
         success,
@@ -27,7 +31,7 @@ router.post('/create', (req, res) => {
 })
 
 router.post('/adduser', (req, res) => {
-  group.post.addUser(req.body, (err, success) => {
+  group.post.addUser(req.body, (err, success, result) => {
     if (err) {
       res.send({
         success,
@@ -53,7 +57,7 @@ const checkActionParam = (req, res, next) => {
 }
 
 router.post('/action', checkActionParam, (req, res) => {
-  group.post.actionGroup(req.body, (err, success) => {
+  group.post.actionGroup(req.body, (err, success, result) => {
     if (err) {
       res.send({
         success,

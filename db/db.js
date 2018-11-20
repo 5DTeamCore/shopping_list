@@ -1,6 +1,6 @@
 var mysql = require('mysql')
 if (process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'test') {
-  var config = require('./config')
+  var config = require('../config')
   var connection = mysql.createConnection({
     host     : config.host,
     user     : config.user,
