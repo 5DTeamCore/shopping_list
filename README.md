@@ -133,3 +133,30 @@ Response:
     success: boolean
   }
 ```
+### ITEM
+GET  
+_To get all the items in this group_
+```
+- /api/items?group_id=1
+```
+POST  
+_To create a item_
+```
+Endpoint:
+  - /api/item/add
+Parameter:
+  {
+    name: "asdf",
+    amount: 10,
+    quantity: 1,
+    active: 1, // 1 = Active, 0 = Inactive
+    shopping_group_id: 1,
+    category_id: 1,
+    user_id: 1
+  }
+Response:
+  Response:
+  {
+    success: boolean
+  }
+```

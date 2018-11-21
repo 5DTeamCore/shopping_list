@@ -5,7 +5,7 @@ const should = chai.should();
 const group = require('../../db/modal/group');
 const db = require('../../db/db');
 
-describe('User', () => {
+describe('Group', () => {
   before((done) => {
     db.query('CALL ResetAllTable', (err, result) => {
       done()
