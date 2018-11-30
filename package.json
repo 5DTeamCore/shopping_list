@@ -3,7 +3,7 @@
   "scripts": {
     "test": "mocha --recursive",
     "start": "node server/app.js",
-    "start-dev": "NODE_ENV=dev nodemon server/app.js"
+    "start-dev": "NODE_ENV=dev node server/app.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
